@@ -43,3 +43,62 @@ The dataset consists of tweets labeled with their corresponding sentiments:
 │   └── svm_model.pkl          # Saved SVM model (if applicable)
 ├── README.md                  # Project documentation
 └── requirements.txt           # Python dependencies
+```
+
+## Preprocessing Steps
+
+Data preprocessing is crucial for improving model performance. The following steps were executed in order:
+
+### 1. Loading the Dataset
+
+- Imported the dataset using `pandas`.
+- Checked for data consistency and explored basic statistics.
+
+### 2. Removing URLs
+
+- Used regular expressions to identify and remove URLs from tweets.
+- **Example**:  
+  - Original: `Check out this link http://example.com`  
+  - Processed: `Check out this link`
+
+### 3. Removing Slangs
+
+- Created a slang dictionary to map slangs to their formal meanings.
+- Replaced slangs in tweets using the dictionary.
+- **Example**:  
+  - Original: `lol`  
+  - Processed: `laugh out loud`
+
+### 4. Removing Emojis
+
+- Utilized the `emoji` library to detect and remove emojis.
+- **Example**:  
+  - Original: `I'm happy 😊`  
+  - Processed: `I'm happy`
+
+### 5. Removing Punctuations
+
+- Removed punctuation marks using string translation.
+- **Example**:  
+  - Original: `Hello!!!`  
+  - Processed: `Hello`
+
+### 6. Removing Stop Words
+
+- Used NLTK's list of stop words to eliminate common words that do not contribute to sentiment.
+- **Example**:  
+  - Original: `This is a sample tweet`  
+  - Processed: `This sample tweet`
+
+### 7. Performing Lemmatization
+
+- Applied NLTK's `WordNetLemmatizer` to reduce words to their base forms.
+- **Example**:  
+  - Original: `running`  
+  - Processed: `run`
+
+### 8. Tokenization
+
+- Split the cleaned tweets into individual words (tokens).
+- Prepared the data for word embedding.
+
