@@ -237,3 +237,29 @@ Data preprocessing is crucial for improving model performance. The following ste
 git clone https://github.com/yourusername/twitter-sentiment-analysis.git
 cd twitter-sentiment-analysis
 ```
+
+
+### 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Download the Dataset
+
+Place the dataset file tweets.csv in the data/ directory.
+
+### 4. Run the Jupyter Notebook
+```bash
+jupyter notebook notebooks/sentiment_analysis.ipynb
+```
+
+### 5. Follow the Steps in the Notebook
+ - Execute each cell sequentially.
+ - The notebook contains detailed explanations and code for each step.
+
+
+# Contact
+For any questions or suggestions, please contact: [bhimsendabby@gmail.com]
+
+Note: This project is for educational purposes. The dataset is not included due to size constraints. Please ensure you have the rights to use any dataset you choose.
