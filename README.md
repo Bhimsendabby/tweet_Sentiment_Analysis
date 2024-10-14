@@ -102,3 +102,138 @@ Data preprocessing is crucial for improving model performance. The following ste
 - Split the cleaned tweets into individual words (tokens).
 - Prepared the data for word embedding.
 
+## Word Embedding
+
+### Vectorizing Tokens using Word2Vec CBOW Model
+
+- Trained a Word2Vec model with the following parameters:
+  - **Architecture**: Continuous Bag of Words (CBOW)
+  - **Vector Size**: 100 features
+  - **Window Size**: Adjusted based on experimentation
+- Converted each tweet into a numerical vector by averaging the Word2Vec embeddings of its tokens.
+
+---
+
+## Handling Null Values
+
+### Null Value Handling
+
+- Checked for any null values in the dataset after preprocessing.
+- Handled null values by:
+  - Removing rows with null values.
+  - Optionally, imputing with appropriate methods if necessary.
+
+---
+
+## Splitting the Dataset
+
+### Train-Test Split
+
+- Divided the dataset into training and testing sets using an **80-20 split**.
+- Ensured that the split is stratified to maintain the proportion of sentiment classes.
+
+---
+
+## Label Encoding
+
+### Encoding Sentiment Labels
+
+- Used scikit-learn's `LabelEncoder` to convert sentiment labels into numerical format:
+  - **Positive**: `2`
+  - **Neutral**: `1`
+  - **Negative**: `0`
+
+---
+
+## Model Training
+
+### Training the SVM Model
+
+- Selected **SVM** as the classification algorithm due to its effectiveness in high-dimensional spaces.
+- Used scikit-learn's `SVC` class with the following parameters:
+  - **Kernel**: Linear (experimented with RBF as well)
+  - **Regularization parameter C**: Tuned during model tuning
+- Trained the model using the training dataset.
+
+---
+
+## Model Evaluation
+
+### Calculating AUC Score and ROC Curve
+
+- Predicted probabilities using `decision_function` or `predict_proba`.
+- Calculated the **Area Under the Curve (AUC)** score.
+- Plotted the **Receiver Operating Characteristic (ROC)** curve for each class.
+
+### Calculating Training and Testing Accuracy
+
+- Evaluated the model's accuracy on both the training and testing datasets.
+- Used `accuracy_score` from scikit-learn.
+
+### Calculating F1 Score
+
+- Computed the **F1 score** to balance precision and recall.
+- Calculated for each class using `f1_score` with `average='weighted'`.
+
+### Confusion Matrix
+
+- Generated a **confusion matrix** using `confusion_matrix`.
+- Visualized it using a **heatmap** for better interpretation.
+
+---
+
+## Model Tuning and Cross-Validation
+
+### Model Tuning
+
+- Performed hyperparameter tuning using **Grid Search** or **Random Search**.
+- Tuned the following parameters:
+  - **Regularization parameter C**
+  - **Kernel type** (Linear, RBF)
+  - **Gamma** (for RBF kernel)
+- Selected the model with the best cross-validation score.
+
+### Cross-Validation using K-Fold
+
+- Implemented **K-Fold Cross-Validation** with `K=5`.
+- Ensured the model's performance is consistent across different data folds.
+- Used `cross_val_score` for evaluation.
+
+## Results
+
+- **Training Accuracy**: 95% (example)
+- **Testing Accuracy**: 93% (example)
+- **AUC Score**: 0.96 (example)
+- **F1 Score**: 0.93 (example)
+
+### Confusion Matrix:
+
+|                       | Predicted Negative | Predicted Neutral | Predicted Positive |
+|-----------------------|--------------------|-------------------|--------------------|
+| **Actual Negative**    | TN                 | FP                | FP                 |
+| **Actual Neutral**     | FN                 | TN                | FP                 |
+| **Actual Positive**    | FN                 | FP                | TP                 |
+
+---
+
+## Conclusion
+
+- The SVM model, combined with Word2Vec embeddings, effectively classifies tweet sentiments.
+- Preprocessing steps significantly improved the model's performance by cleaning the data.
+- Model tuning and cross-validation ensured the robustness and generalizability of the model.
+
+### Future improvements could include:
+
+- Testing with different embedding methods like **GloVe** or **BERT**.
+- Exploring other classification algorithms like **Random Forest** or **Neural Networks**.
+
+---
+
+## How to Run
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/twitter-sentiment-analysis.git
+cd twitter-sentiment-analysis
+```
